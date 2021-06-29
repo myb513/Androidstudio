@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="onButton1Clicked"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onButton1Clicked"
+        android:text="사진 바꾸기" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/iceberg" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/annotated" />
+    </FrameLayout>
+</LinearLayout>
+
+// xml파일 코드
+
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
+public class MainActivity extends AppCompatActivity {
+
+    ImageView imageView;
+    ImageView imageView2;
+    int imageIndex = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        imageView = findViewById((R.id.imageView5));
+        imageView2 = findViewById(R.id.imageView6);
+    }
+
+    public void onButton1Clicked(View v){
+
+        changeIamge();
+    }
+
+    private void changeIamge() {
+
+        if(imageIndex == 0){
+            imageView.setVisibility(View.VISIBLE);
+            imageView2.setVisibility(View.INVISIBLE);
+
+
+            imageIndex = 1;
+        }else if(imageIndex == 1){
+            imageView.setVisibility(View.INVISIBLE);
+            imageView2.setVisibility(View.VISIBLE);
+
+            imageIndex = 0;
+        }
+    }
+
+}
+
+//Mainactivity 파일 
